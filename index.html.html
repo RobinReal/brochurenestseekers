@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nestseekers Campania - Brochure</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+
+        .brochure-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        .page {
+            width: 100%;
+            height: 297mm;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23001122" width="1200" height="800"/><circle cx="300" cy="200" r="150" fill="%23003366" opacity="0.3"/><circle cx="900" cy="600" r="200" fill="%23004488" opacity="0.2"/><polygon points="600,100 700,300 500,300" fill="%23ffffff" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-header {
+            padding: 40px 50px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: white;
+        }
+
+        .page-number {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .page-content {
+            flex: 1;
+            padding: 40px 50px 50px;
+            z-index: 10;
+        }
+
+        /* PAGE 1 - COVER */
+        .page-1 {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23001a33" width="1200" height="800"/><circle cx="200" cy="150" r="100" fill="%23ffffff" opacity="0.05"/><circle cx="1000" cy="650" r="150" fill="%23ffffff" opacity="0.03"/><polygon points="600,50 750,350 450,350" fill="%23ffffff" opacity="0.08"/><rect x="100" y="600" width="200" height="100" fill="%23ffffff" opacity="0.02"/></svg>');
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #cccccc;
+        }
+
+        p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .three-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .box h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        .cta-section {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 20px;
+            border-left: 4px solid #ffffff;
+            background: rgba(255,255,255,0.1);
+            margin: 30px 0;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffffff;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                margin: 0;
+                background: white;
+            }
+            
+            .page {
+                height: 297mm;
+                width: 210mm;
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+            
+            .page:last-child {
+                page-break-after: avoid;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .page {
+                height: auto;
+                min-height: 100vh;
+                margin-bottom: 20px;
+            }
+            
+            .page-content {
+                padding: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .two-column,
+            .three-boxes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure-container">
+        
+        <!-- PAGE 1 - COVER -->
+        <div class="page page-1">
+            <div class="page-header">
+                <div class="logo">NESTSEEKERS</div>
+                <div class="page-number">01</div>
+            </div>
+            <div class="page-content">
+                <h1 class="hero-title">CAMPANIA</h1>
+                <div class="hero-subtitle">Napoli • Costiera Amalfitana • Capri</div>
+                <div class="hero-tagline">Gateway esclusivo al Sud Italia per la clientela internazionale di alta gamma</div>
+            </div>
+        </div>
+
+        <!-- PAGE 2 - LA CAMPANIA -->
+        <div class="page">
+            <div class="page-header">
+                <div class="logo">NESTSEEKERS CAMPANIA</div>
+                <div class="page-number">02</div>
+            </div>
+            <div class="page-content">
+                <h1>LA CAMPANIA: UN PATRIMONIO MILLENARIO</h1>
+                
+                <div class="section">
+                    <h2>🏛️ Culla del Mediterraneo</h2>
+                    <p>La Campania è molto più di una destinazione: è un <span class="highlight">brand globale</span> che si vende da solo. Dalla <strong>Neapolis greco-romana</strong> con i siti archeologici di Pompei ed Ercolano, alla gloriosa <strong>Repubblica Marinara di Amalfi</strong> che dominò i commerci mediterranei, fino alla <strong>Capri imperiale</strong> amata da Tiberio e dalla jet-set internazionale del Novecento.</p>
+                </div>
+
+                <div class="section">
+                    <h2>Tre Gioielli, Un'Unica Esperienza</h2>
+                    <div class="three-boxes">
+                        <div class="box">
+                            <h4><span class="icon">🏛️</span> NAPOLI</h4>
+                            <p><strong>La Metropoli Culturale</strong></p>
+                            <ul>
+                                <li>Centro storico <strong>UNESCO</strong> con 2.800 anni di storia</li>
+                                <li>Quartieri prime: <strong>Chiaia, Posillipo, Vomero</strong></li>
+                                <li>Rinascimento culturale e gastronomico in atto</li>
+                                <li>Hub naturale per tutta la regione</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="box">
+                            <h4><span class="icon">🌊</span> COSTIERA AMALFITANA</h4>
+                            <p><strong>L'Icona</strong></p>
+                            <ul>
+                                <li><strong>Patrimonio UNESCO</strong> riconosciuto mondialmente</li>
+                                <li>Borghi verticali: <strong>Positano, Amalfi, Ravello</strong></li>
+                                <li>Terrazze di limoneti e architetture uniche</li>
+                                <li><strong>Scarcity economics</strong>: offerta rigidamente limitata</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="box">
+                            <h4><span class="icon">🏝️</span> CAPRI</h4>
+                            <p><strong>L'Ultra-Prime</strong></p>
+                            <ul>
+                                <li>I leggendari <strong>Faraglioni</strong> e la <strong>Grotta Azzurra</strong></li>
+                                <li>Ville storiche immerse nella macchia mediterranea</li>
+                                <li>Clientela <strong>price-inelastic</strong> da generazioni</li>
+                                <li>Brand sinonimo di lusso ed esclusività</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>⏰ Quando Venire</h3>
+                    <div class="two-column">
+                        <div>
+                            <p><strong>Primavera/Autunno:</strong> clima ideale, colori intensi</p>
+                            <p><strong>Estate:</strong> alta stagione, eventi internazionali</p>
+                        </div>
+                        <div>
+                            <p><strong>Inverno:</strong> esperienza culturale napoletana, clima mite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3 - ACCESSIBILITÀ -->
+        <div class="page">
+            <div class="page-header">
+                <div class="logo">NESTSEEKERS CAMPANIA</div>
+                <div class="page-number">03</div>
+            </div>
+            <div class="page-content">
+                <h1>ACCESSIBILITÀ: IL SISTEMA PERFETTO</h1>
+                
+                <div class="section">
+                    <h2>🌐 Connessioni Globali Semplificate</h2>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>✈️ AEREO</h4>
+                            <p><strong>Napoli (NAP)</strong>: hub internazionale con voli diretti da USA, UK, Germania</p>
+                            <p>Collegamenti principali città europee</p>
+                            <p>Transfer aeroporto-centro: <strong>15 minuti</strong></p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h4>🚄 ALTA VELOCITÀ</h4>
+                            <p><strong>Napoli Centrale</strong>: Roma (1h10'), Milano (4h15')</p>
+                            <p>Collegamento diretto con le principali città italiane</p>
+                            <p>Dalla stazione: transfer dedicati verso costiera e porto</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>⛵ Collegamenti Marittimi</h3>
+                    <div class="two-column">
+                        <div class="box">
+                            <h4>🏝️ CAPRI</h4>
+                            <ul>
+                                <li>Aliscafi da Napoli: <strong>45-50 minuti</strong></li>
+                                <li>Frequenza elevata (ogni 30' in alta stagione)</li>
+                                <li>Arrivo Marina Grande + servizi tender per yacht</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="box">
+                            <h4>🌊 COSTIERA AMALFITANA</h4>
+                            <ul>
+                                <li>Collegamenti stagionali Napoli-Amalfi-Positano</li>
+                                <li>Servizi inter-costa per spostamenti panoramici</li>
+                                <li>Charter privati disponibili</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>🚗 Transfer Premium & 🛥️ Yachting</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>TRANSFER PREMIUM</h4>
+                            <p><strong>SS163 Amalfitana</strong>: strada panoramica mondiale</p>
+                            <p>Servizi chauffeur con flotta luxury</p>
+                            <p>Coordinamento bagagli e accoglienza personalizzata</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h4>YACHTING & CHARTER</h4>
+                            <p>Ormeggi coordinati a Capri, Amalfi, Napoli</p>
+                            <p>Day cruise Li Galli e Costiera</p>
+                            <p>Servizi concierge nautici</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>🎯 Il Vantaggio Logistico</h3>
+                    <p><strong>Napoli = Gateway Naturale</strong>: arrivo internazionale veloce, accesso a Capri e Costiera in meno di un'ora con servizi su misura per HNWI.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 4 - PERCHÉ VALE IL TUO TEMPO & CTA -->
+        <div class="page">
+            <div class="page-header">
+                <div class="logo">NESTSEEKERS CAMPANIA</div>
+                <div class="page-number">04</div>
+            </div>
+            <div class="page-content">
+                <h1>PERCHÉ VALE IL TUO TEMPO</h1>
+                
+                <div class="section">
+                    <h2>💎 5 Ragioni per Puntare sulla Campania</h2>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>💎 BRAND DESTINATIONS CHE CONVERTONO</h4>
+                            <p>Capri, Amalfi, Napoli sono <strong>richieste naturali</strong> dalla tua clientela US/UK/CH/ME. Facili da cross-sell su portafogli già attivi.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h4>⏰ SCARCITY = URGENZA</h4>
+                            <p>Stock <strong>rigidamente limitato</strong> su Capri/Costiera accelera le decisioni su asset iconici. Perfetto per clienti high-intent.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h4>🎯 ESPERIENZA "HOSTED"</h4>
+                            <p><strong>Tu resti il frontman</strong>, noi curiamo l'eccellenza operativa: sopralluoghi, transfer, accessi speciali.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <h4>💰 ECONOMICS INTERESSANTI</h4>
+                            <p>Ticket elevati su trophy assets → <strong>referral/co-listing con impatto reale</strong> sul tuo GCI annuale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🤝 Come Lavoriamo Tra Colleghi</h2>
+                    <div class="two-column">
+                        <div class="box">
+                            <h4>⚡ ZERO ATTRITI OPERATIVI</h4>
+                            <ul>
+                                <li><strong>SLA garantiti</strong>: risposta &lt;2h EU | &lt;6h US/MEA</li>
+                                <li>Template NDA/LOI pronti</li>
+                                <li>Disponibilità visite 7/7 in alta stagione</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="box">
+                            <h4>🔒 TUTELA DEL TUO BRAND</h4>
+                            <ul>
+                                <li>Contenuti co-branded</li>
+                                <li>No-bypass policy interna</li>
+                                <li>Conflict-check e protezione su trattative attive</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h1>🚀 ENTRA NELLA RETE CAMPANIA 2025</h1>
+                    <p>Destinazioni iconiche, accoglienza d'eccellenza, servizio su misura: noi convertiamo la vostra domanda internazionale in esperienze d'acquisto memorabili.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h4>📧 EMAIL</h4>
+                            <p>campania@nestseekers.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>📱 DIRECT LINE</h4>
+                            <p>+39 081 XXX XXXX</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>🏢 SEDE OPERATIVA</h4>
+                            <p>Napoli, Italia</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>🗣️ LINGUE</h4>
+                            <p>Italiano | English</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quote">
+                        "Non aspettare il momento perfetto. Il momento perfetto è ADESSO. La Campania ti aspetta, Nestseekers ti supporta. Insieme, creiamo qualcosa di straordinario."
+                        <div class="quote-author">- Eddie Shapiro, CEO Nestseekers International</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
